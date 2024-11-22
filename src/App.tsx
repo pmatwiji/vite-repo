@@ -20,7 +20,7 @@ function App() {
                 color='error'
                 size='large'
             >
-                Click Me
+                Click Me pls
             </Button>
         </Box>
     );
