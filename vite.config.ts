@@ -5,6 +5,7 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import dts from 'vite-plugin-dts'
 
 export default defineConfig({
+  base: './',
   plugins: [
     react(),
     cssInjectedByJsPlugin(),
@@ -13,10 +14,11 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'src/index.tsx',
-      name: 'test',
+      name: 'ViteRepo',
       formats: ['umd'],
-      fileName: (format) => `test.${format}.js`
+      fileName: (format) => `vite-repo.${format}.js`
     },
+    outDir: 'dist',
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {
