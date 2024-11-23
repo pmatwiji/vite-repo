@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test UMD</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <script src="./vite-repo.umd.js"></script>
+</head>
+<body>
+    <div id="clicker-container"></div>
+    <script>
+        console.log('Document loaded');
+        console.log('ViteRepo:', ViteRepo);
+        
+        const element = document.getElementById('clicker-container');
+        if (element && ViteRepo) {
+            try {
+                ViteRepo.init({ element });
+                console.log('Initialization successful');
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        }
+    </script>
+</body>
+</html> 
