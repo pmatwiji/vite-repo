@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import Clicker from './components/Clicker';
+
+const theme = createTheme();
 
 interface MountOptions {
     element: HTMLElement;
@@ -16,7 +19,10 @@ export function init(options: MountOptions) {
     const root = ReactDOM.createRoot(element);
     root.render(
         <React.StrictMode>
-            <App />
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Clicker onClick={() => console.log('Clicked!')} />
+            </ThemeProvider>
         </React.StrictMode>
     );
 
@@ -27,9 +33,9 @@ export function init(options: MountOptions) {
     };
 }
 
-export { App };
+export { Clicker };
 
-const devRoot = document.getElementById('root');
-if (devRoot) {
-    init({ element: devRoot });
+// Auto-init for development
+if (typeof window !== 'undefined' && document.getElementById('root')) {
+    init({ element: document.getElementById('root')! });
 }

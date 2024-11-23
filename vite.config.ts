@@ -11,6 +11,10 @@ export default defineConfig({
     cssInjectedByJsPlugin(),
     dts({ rollupTypes: true })
   ],
+  define: {
+    'process.env': {},
+    'process.env.NODE_ENV': JSON.stringify('production')
+  },
   build: {
     lib: {
       entry: 'src/index.tsx',
@@ -18,7 +22,6 @@ export default defineConfig({
       formats: ['umd'],
       fileName: (format) => `vite-repo.${format}.js`
     },
-    outDir: 'dist',
     rollupOptions: {
       external: ['react', 'react-dom'],
       output: {

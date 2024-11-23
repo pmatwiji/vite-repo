@@ -1,6 +1,10 @@
-import { JSX as JSX_2 } from 'react/jsx-runtime';
+import { default as default_2 } from 'react';
 
-export declare function App(): JSX_2.Element;
+export declare const Clicker: default_2.FC<ClickerProps>;
+
+declare interface ClickerProps {
+    onClick?: () => void;
+}
 
 export declare function init(options: MountOptions): {
     unmount: () => void;
