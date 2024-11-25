@@ -1,20 +1,9 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
-import dts from 'vite-plugin-dts'
 
 export default defineConfig({
-  base: './',
-  plugins: [
-    react(),
-    cssInjectedByJsPlugin(),
-    dts({ rollupTypes: true })
-  ],
-  define: {
-    'process.env': {},
-    'process.env.NODE_ENV': JSON.stringify('production')
-  },
+  plugins: [react()],
   build: {
     lib: {
       entry: 'src/index.tsx',
@@ -23,13 +12,19 @@ export default defineConfig({
       fileName: (format) => `vite-repo.${format}.js`
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', '@mui/material', '@mui/material/styles'],
       output: {
         globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+          'react': 'React',
+          'react-dom': 'ReactDOM',
+          '@mui/material': 'MaterialUI',
+          '@mui/material/styles': 'MaterialUI'
         }
       }
     }
+  },
+  define: {
+    'process.env.NODE_ENV': '"production"',
+    'process.env': '{}',
   }
 })

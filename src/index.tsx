@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles'; // Import createTheme from styles
+import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider from styles
+import { CssBaseline, Button, Box } from '@mui/material'; // Keep these from @mui/material
 import Clicker from './components/Clicker';
 
 const theme = createTheme();
