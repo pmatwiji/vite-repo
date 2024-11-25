@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as ReactDOM from 'react-dom/client';
 import { createTheme } from '@mui/material/styles'; // Import createTheme from styles
 import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider from styles
 import { CssBaseline, Button, Box } from '@mui/material'; // Keep these from @mui/material
@@ -8,18 +8,24 @@ import Clicker from './components/Clicker';
 const theme = createTheme();
 
 interface MountOptions {
-    element: HTMLElement;
+    containerId: string;
 }
 
-export function init(options: MountOptions) {
-    const { element } = options;
+export function init(containerId: string) {
+    console.log('Initializing with container:', containerId);
+    const element = document.getElementById(containerId);
 
     if (!element) {
-        throw new Error('Element is required to mount the application');
+        console.error('Element is required to mount the application');
+        return { containerId };
     }
 
-    const root = ReactDOM.createRoot(element);
-    root.render(
+    const reactDOMClient = {
+        createRoot: ReactDOM.createRoot,
+        hydrateRoot: ReactDOM.hydrateRoot,
+    };
+
+    reactDOMClient.createRoot(element).render(
         <React.StrictMode>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
@@ -27,17 +33,14 @@ export function init(options: MountOptions) {
             </ThemeProvider>
         </React.StrictMode>
     );
-
-    return {
-        unmount: () => {
-            root.unmount();
-        },
-    };
 }
 
-export { Clicker };
-
-// Auto-init for development
-if (typeof window !== 'undefined' && document.getElementById('root')) {
-    init({ element: document.getElementById('root')! });
+if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (document.getElementById('root')) {
+            init('root');
+        }
+    });
 }
+
+export { Clicker } from './components/Clicker';

@@ -5,8 +5,9 @@ export interface ClickerProps {
     onClick?: () => void;
 }
 
-const Clicker: React.FC<ClickerProps> = ({ onClick }) => {
+export const Clicker = ({ onClick }: ClickerProps) => {
     console.log('Clicker component rendering');
+
     return (
         <Box
             sx={{

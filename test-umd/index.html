@@ -18,17 +18,7 @@
     <script src="./vite-repo.umd.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const element = document.getElementById('clicker-container');
-            if (element && window.ViteRepo) {
-                try {
-                    window.ViteRepo.init({ element });
-                    console.log('Initialization successful');
-                } catch (error) {
-                    console.error('Initialization error:', error);
-                }
-            }
-        });
+        ViteRepo.init('clicker-container');
     </script>
 </body>
 </html>
