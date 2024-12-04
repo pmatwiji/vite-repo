@@ -5,7 +5,11 @@ import { ThemeProvider } from '@mui/material/styles'; // Import ThemeProvider fr
 import { CssBaseline, Button, Box } from '@mui/material'; // Keep these from @mui/material
 import Clicker from './components/Clicker';
 
-const theme = createTheme();
+const theme = createTheme({
+    typography: {
+        fontFamily: '"Poppins", sans-serif',
+    },
+});
 
 interface MountOptions {
     containerId: string;
